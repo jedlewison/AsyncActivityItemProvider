@@ -10,14 +10,14 @@
 	<string>AsyncActivityItemProvider</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>8D5243CF4E173019DDEFD7B6BBACDEDC10D6990A</key>
+		<key>04AA4B0DF32D6CEAECC5AFDD7E618DABEF310E7A</key>
 		<string>github.com:jedlewison/AsyncActivityItemProvider.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>AsyncActivityItemProvider.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>8D5243CF4E173019DDEFD7B6BBACDEDC10D6990A</key>
+		<key>04AA4B0DF32D6CEAECC5AFDD7E618DABEF310E7A</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
@@ -25,14 +25,14 @@
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>8D5243CF4E173019DDEFD7B6BBACDEDC10D6990A</string>
+	<string>04AA4B0DF32D6CEAECC5AFDD7E618DABEF310E7A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>8D5243CF4E173019DDEFD7B6BBACDEDC10D6990A</string>
+			<string>04AA4B0DF32D6CEAECC5AFDD7E618DABEF310E7A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AsyncActivityItemProvider</string>
 		</dict>
