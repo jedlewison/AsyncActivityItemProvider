@@ -1,0 +1,10 @@
+PODS:
+  - AsyncOpKit (0.0.6)
+
+DEPENDENCIES:
+  - AsyncOpKit
+
+SPEC CHECKSUMS:
+  AsyncOpKit: 2cb96804722b01fa4e8c4aae2e9e3e31f8dda4f2
+
+COCOAPODS: 0.37.2
