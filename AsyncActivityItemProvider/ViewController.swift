@@ -12,8 +12,11 @@ class ViewController: UIViewController {
 
     @IBAction func showActivityViewController(sender: UIBarButtonItem) {
 
+        // Create a closer that provides an item asynchronously,
+        // calling finishWithItem on the supplied operation parameter
+        // Here we are simply using a dispatch after and then supplying an NSDate description
         let provideItemHandler: ProvideItemHandler = {
-            operation in
+            (activityType: String, operation: AsyncActivityItemProviderOperationController) in
 
             let delay = Int64(4 * NSEC_PER_SEC)
             let time = dispatch_time(DISPATCH_TIME_NOW, delay)
@@ -21,38 +24,37 @@ class ViewController: UIViewController {
                 [weak operation] in
                 operation?.finishWithItem(NSDate().description)
             }
-            if let operation = operation as? ProgressUpdating, progressHandler = operation.progressHandler {
-                var i = 0 as Double
-                while i < 100 {
-                    let progress = i/7
-                    progressHandler(progress: progress)
-                    i += 1
-                    sleep(1)
-                }
+
+            // Update progress during the operation
+            var i = 1 as Double
+            while i <= 4 {
+                operation.progress = i/4
+                i += 1
+                sleep(1)
             }
 
         }
 
+        // Cancellation handler lets you perform custom cancellation.
+        // Although you don't need to call finish on the operation inside the handler,
+        // You must ensure that finish is called on the operation
+        // This implementation mimics the default behavior (simply pass nil)
         let cancellationHandler: CancellationHandler = {
             operation in
             operation.finish()
         }
 
-        let asyncActivityItemProvider = AsyncActivityItemProvider(placeholderItem: "Blah", provideItemHandler: provideItemHandler, cancelHandler: cancellationHandler)
-        let activityViewController = UIActivityViewController(possiblyAsyncActivityItems: [asyncActivityItemProvider], applicationActivities: nil)
+        // create an item provider with the handlers and a placeholder item
+        // Indicate whether the progress controller should be shown
+
+        let asyncActivityItemProvider = AsyncActivityItemProvider(placeholderItem: "Blah", provideItemHandler: provideItemHandler, cancellationHandler: cancellationHandler, progressControllerMode: .Enabled)
+
+        // create the activityViewController with the asyncActivityItemProvider, then present it
+        let activityViewController = UIActivityViewController(asyncItemProvider: asyncActivityItemProvider, activityItems: nil, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         presentViewController(activityViewController, animated: true, completion: nil)
     }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     
 }
 

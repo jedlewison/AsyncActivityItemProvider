@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		854086C21B579F86009355A0 /* UIActivityViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854086C11B579F86009355A0 /* UIActivityViewControllerExtension.swift */; };
 		854086C41B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */; };
+		854086C61B58CD8A009355A0 /* AsyncActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */; };
 		8586C55E1B52DC2900E1D818 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C55D1B52DC2900E1D818 /* AppDelegate.swift */; };
 		8586C5601B52DC2900E1D818 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C55F1B52DC2900E1D818 /* ViewController.swift */; };
 		8586C5631B52DC2900E1D818 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8586C5611B52DC2900E1D818 /* Main.storyboard */; };
 		8586C5651B52DC2900E1D818 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8586C5641B52DC2900E1D818 /* Images.xcassets */; };
 		8586C5681B52DC2900E1D818 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8586C5661B52DC2900E1D818 /* LaunchScreen.xib */; };
 		8586C5741B52DC2900E1D818 /* AsyncActivityItemProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C5731B52DC2900E1D818 /* AsyncActivityItemProviderTests.swift */; };
-		8586C5851B52DFA600E1D818 /* AsyncActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C5841B52DFA600E1D818 /* AsyncActivityItemProvider.swift */; };
+		8586C5851B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C5841B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift */; };
 		864AA39C76079433B05320A7 /* Pods_AsyncActivityItemProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1810E7208F6E65669E2B73F /* Pods_AsyncActivityItemProvider.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B4A8AB7B87DFB95AD7154B3 /* Pods_AsyncActivityItemProviderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77716C62A9B344BED9076F7E /* Pods_AsyncActivityItemProviderTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -33,8 +33,8 @@
 /* Begin PBXFileReference section */
 		3A57408C487D5763C999BA05 /* Pods-AsyncActivityItemProvider.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncActivityItemProvider.release.xcconfig"; path = "Pods/Target Support Files/Pods-AsyncActivityItemProvider/Pods-AsyncActivityItemProvider.release.xcconfig"; sourceTree = "<group>"; };
 		77716C62A9B344BED9076F7E /* Pods_AsyncActivityItemProviderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncActivityItemProviderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		854086C11B579F86009355A0 /* UIActivityViewControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIActivityViewControllerExtension.swift; path = Pod/UIActivityViewControllerExtension.swift; sourceTree = "<group>"; };
 		854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProviderOperations.swift; path = Pod/AsyncActivityItemProviderOperations.swift; sourceTree = "<group>"; };
+		854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProvider.swift; path = Pod/AsyncActivityItemProvider.swift; sourceTree = "<group>"; };
 		8586C5581B52DC2900E1D818 /* AsyncActivityItemProvider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncActivityItemProvider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8586C55C1B52DC2900E1D818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8586C55D1B52DC2900E1D818 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		8586C56D1B52DC2900E1D818 /* AsyncActivityItemProviderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AsyncActivityItemProviderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8586C5721B52DC2900E1D818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8586C5731B52DC2900E1D818 /* AsyncActivityItemProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncActivityItemProviderTests.swift; sourceTree = "<group>"; };
-		8586C5841B52DFA600E1D818 /* AsyncActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProvider.swift; path = Pod/AsyncActivityItemProvider.swift; sourceTree = "<group>"; };
+		8586C5841B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProviderInternal.swift; path = Pod/AsyncActivityItemProviderInternal.swift; sourceTree = "<group>"; };
 		92F3DBE754996BFF07FF98AB /* Pods-AsyncActivityItemProviderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncActivityItemProviderTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AsyncActivityItemProviderTests/Pods-AsyncActivityItemProviderTests.release.xcconfig"; sourceTree = "<group>"; };
 		B6F624177520749E59FECEE2 /* Pods-AsyncActivityItemProvider.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AsyncActivityItemProvider.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AsyncActivityItemProvider/Pods-AsyncActivityItemProvider.debug.xcconfig"; sourceTree = "<group>"; };
 		C1810E7208F6E65669E2B73F /* Pods_AsyncActivityItemProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncActivityItemProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				8586C5831B52DF7C00E1D818 /* Pod */,
-				8586C55A1B52DC2900E1D818 /* AsyncActivityItemProvider */,
+				8586C55A1B52DC2900E1D818 /* Sample Project */,
 				8586C5701B52DC2900E1D818 /* AsyncActivityItemProviderTests */,
 				8586C5591B52DC2900E1D818 /* Products */,
 				9078EA5AD194D9D90ABEDE6C /* Pods */,
@@ -102,7 +102,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		8586C55A1B52DC2900E1D818 /* AsyncActivityItemProvider */ = {
+		8586C55A1B52DC2900E1D818 /* Sample Project */ = {
 			isa = PBXGroup;
 			children = (
 				8586C55D1B52DC2900E1D818 /* AppDelegate.swift */,
@@ -112,6 +112,7 @@
 				8586C5661B52DC2900E1D818 /* LaunchScreen.xib */,
 				8586C55B1B52DC2900E1D818 /* Supporting Files */,
 			);
+			name = "Sample Project";
 			path = AsyncActivityItemProvider;
 			sourceTree = "<group>";
 		};
@@ -143,9 +144,9 @@
 		8586C5831B52DF7C00E1D818 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
+				854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */,
+				8586C5841B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift */,
 				854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */,
-				854086C11B579F86009355A0 /* UIActivityViewControllerExtension.swift */,
-				8586C5841B52DFA600E1D818 /* AsyncActivityItemProvider.swift */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -362,10 +363,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8586C5601B52DC2900E1D818 /* ViewController.swift in Sources */,
+				854086C61B58CD8A009355A0 /* AsyncActivityItemProvider.swift in Sources */,
 				854086C41B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift in Sources */,
 				8586C55E1B52DC2900E1D818 /* AppDelegate.swift in Sources */,
-				854086C21B579F86009355A0 /* UIActivityViewControllerExtension.swift in Sources */,
-				8586C5851B52DFA600E1D818 /* AsyncActivityItemProvider.swift in Sources */,
+				8586C5851B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

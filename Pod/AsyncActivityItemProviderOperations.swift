@@ -9,7 +9,7 @@
 import AsyncOpKit
 
 
-class PresentViewControllerOperation: AsyncOperation {
+final class PresentViewControllerOperation: AsyncOperation {
 
     weak var presentationContext: UIViewController?
     let presentedViewController: UIViewController
@@ -35,7 +35,7 @@ class PresentViewControllerOperation: AsyncOperation {
 
 
 
-class DismissViewControllerOperation: AsyncOperation {
+final class DismissViewControllerOperation: AsyncOperation {
 
     weak var presentedViewController: UIViewController?
 
