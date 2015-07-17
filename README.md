@@ -1,7 +1,9 @@
 # AsyncActivityItemProvider
 UIActivityItemProvider subclass to handle providing items that must be generated asynchronously, including presenting a progress UI.
 
-Example:
+Documentation and a proper Podspec coming soon.
+
+Example usage:
 
 ```
         // Create a closer that provides an item asynchronously,
