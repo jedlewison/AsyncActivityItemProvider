@@ -46,6 +46,15 @@ final public class AsyncActivityItemProvider {
 
 public extension UIActivityViewController {
 
+    public convenience init(asyncItemProviderOperation: ActivityItemProviderOperation, activityItems: [AnyObject]? = nil, applicationActivities: [AnyObject]? = nil) {
+        var allActivityItems = [AsyncUIActivityItemProvider(itemProviderOperation: asyncItemProviderOperation) as AnyObject]
+        if let activityItems = activityItems {
+            allActivityItems.extend(activityItems)
+        }
+        
+        self.init(activityItems: allActivityItems, applicationActivities: applicationActivities)
+    }
+
     public convenience init(asyncItemProvider: AsyncActivityItemProvider, activityItems: [AnyObject]? = nil, applicationActivities: [AnyObject]? = nil) {
         var allActivityItems = [AsyncUIActivityItemProvider(itemProvider: asyncItemProvider) as AnyObject]
         if let activityItems = activityItems {
