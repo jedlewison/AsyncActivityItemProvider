@@ -9,11 +9,17 @@
 import UIKit
 
 
-typealias ProvideItemHandler = (activityType: String, operation: AsyncActivityItemProviderOperationController) -> ()
-typealias CancellationHandler = (operation: AsyncActivityItemProviderOperationController) -> ()
+public typealias ProvideItemHandler = (activityType: String, operation: AsyncActivityItemProviderOperationController) -> ()
+public typealias CancellationHandler = (operation: AsyncActivityItemProviderOperationController) -> ()
 
 
-protocol AsyncActivityItemProviderOperationController: NSObjectProtocol {
+public enum ProgressControllerMode {
+    case Enabled
+    case Disabled
+}
+
+
+public protocol AsyncActivityItemProviderOperationController: NSObjectProtocol {
     func finishWithItem(item: AnyObject?)
     func finish()
     func cancel()
@@ -21,19 +27,14 @@ protocol AsyncActivityItemProviderOperationController: NSObjectProtocol {
 }
 
 
-final class AsyncActivityItemProvider {
-
-    enum ProgressControllerMode {
-        case Enabled
-        case Disabled
-    }
+final public class AsyncActivityItemProvider {
 
     let provideItemHandler: ProvideItemHandler
     let cancellationHandler: CancellationHandler?
     let placeholderItem: AnyObject
     let progressControllerMode: ProgressControllerMode
 
-    init(placeholderItem: AnyObject, provideItemHandler: ProvideItemHandler, cancellationHandler: CancellationHandler? = nil, progressControllerMode: ProgressControllerMode = .Enabled) {
+    public init(placeholderItem: AnyObject, provideItemHandler: ProvideItemHandler, cancellationHandler: CancellationHandler? = nil, progressControllerMode: ProgressControllerMode = .Enabled) {
         self.placeholderItem = placeholderItem
         self.provideItemHandler = provideItemHandler
         self.cancellationHandler = cancellationHandler
@@ -43,9 +44,9 @@ final class AsyncActivityItemProvider {
 }
 
 
-extension UIActivityViewController {
+public extension UIActivityViewController {
 
-    convenience init(asyncItemProvider: AsyncActivityItemProvider, activityItems: [AnyObject]? = nil, applicationActivities: [AnyObject]? = nil) {
+    public convenience init(asyncItemProvider: AsyncActivityItemProvider, activityItems: [AnyObject]? = nil, applicationActivities: [AnyObject]? = nil) {
         var allActivityItems = [AsyncUIActivityItemProvider(itemProvider: asyncItemProvider) as AnyObject]
         if let activityItems = activityItems {
             allActivityItems.extend(activityItems)

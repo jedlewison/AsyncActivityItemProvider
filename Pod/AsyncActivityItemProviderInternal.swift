@@ -42,15 +42,21 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
         }
     }
 
-    private var itemProviderOperation: ActivityItemProviderOperation?
+    var itemProviderOperation: ActivityItemProviderOperation?
 
-    required init(itemProvider: AsyncActivityItemProvider) {
-        itemProviderOperation = ActivityItemProviderOperation(provideItemHandler: itemProvider.provideItemHandler, cancelHandler: itemProvider.cancellationHandler)
-        super.init(placeholderItem: itemProvider.placeholderItem)
-        if itemProvider.progressControllerMode == .Disabled {
+    convenience init(itemProvider: AsyncActivityItemProvider) {
+        let itemProviderOperation = ActivityItemProviderOperation(itemProvider: itemProvider)
+        self.init(itemProviderOperation: itemProviderOperation)
+    }
+
+    required init(itemProviderOperation: ActivityItemProviderOperation) {
+        self.itemProviderOperation = itemProviderOperation
+        super.init(placeholderItem: itemProviderOperation.placeholderItem)
+        if itemProviderOperation.progressControllerMode == .Disabled {
             progressController = nil
         }
     }
+
 
     private var selfCancelled = false {
         didSet {
@@ -123,39 +129,43 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
 
 }
 
-private class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, AsyncActivityItemProviderOperationController {
+public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, AsyncActivityItemProviderOperationController {
 
-    var item: AnyObject?
-    var activityType: String?
-    var provideItemHandler: ProvideItemHandler
+    public let progressControllerMode: ProgressControllerMode
+    public let placeholderItem: AnyObject
+    public var item: AnyObject?
+    public private(set) var activityType: String?
+    var provideItemHandler: ProvideItemHandler?
     var cancelHandler: CancellationHandler?
     var progressHandler: ProgressHandler?
-    var progress: Double = 0 {
+    public var progress: Double = 0 {
         didSet {
             progressHandler?(progress: progress)
         }
     }
 
-    init(provideItemHandler: ProvideItemHandler, cancelHandler: CancellationHandler? = nil) {
-        self.provideItemHandler = provideItemHandler
-        self.cancelHandler = cancelHandler
+    init(itemProvider: AsyncActivityItemProvider) {
+        provideItemHandler = itemProvider.provideItemHandler
+        cancelHandler = itemProvider.cancellationHandler
+        placeholderItem = itemProvider.placeholderItem
+        progressControllerMode = itemProvider.progressControllerMode
         super.init()
         qualityOfService = .UserInitiated
     }
 
-    override func main() {
+    override public func main() {
         if cancelled {
             finish()
         }
-        provideItemHandler(activityType: activityType ?? "", operation: self)
+        provideItemHandler?(activityType: activityType ?? "", operation: self)
     }
 
-    func finishWithItem(item: AnyObject?) {
+    public func finishWithItem(item: AnyObject?) {
         self.item = item
         finish()
     }
 
-    override func cancel() {
+    override public func cancel() {
         super.cancel()
         if let cancelHandler = cancelHandler {
             cancelHandler(operation: self)
