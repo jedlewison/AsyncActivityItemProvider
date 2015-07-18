@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		854086C41B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */; };
 		854086C61B58CD8A009355A0 /* AsyncActivityItemProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */; };
+		854086C81B59ED8D009355A0 /* AsyncActivityItemProvider.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 854086C71B59ED8D009355A0 /* AsyncActivityItemProvider.podspec */; };
 		8586C55E1B52DC2900E1D818 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C55D1B52DC2900E1D818 /* AppDelegate.swift */; };
 		8586C5601B52DC2900E1D818 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8586C55F1B52DC2900E1D818 /* ViewController.swift */; };
 		8586C5631B52DC2900E1D818 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8586C5611B52DC2900E1D818 /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 		77716C62A9B344BED9076F7E /* Pods_AsyncActivityItemProviderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AsyncActivityItemProviderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProviderOperations.swift; path = Pod/AsyncActivityItemProviderOperations.swift; sourceTree = "<group>"; };
 		854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AsyncActivityItemProvider.swift; path = Pod/AsyncActivityItemProvider.swift; sourceTree = "<group>"; };
+		854086C71B59ED8D009355A0 /* AsyncActivityItemProvider.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AsyncActivityItemProvider.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		8586C5581B52DC2900E1D818 /* AsyncActivityItemProvider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsyncActivityItemProvider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8586C55C1B52DC2900E1D818 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8586C55D1B52DC2900E1D818 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 				854086C51B58CD8A009355A0 /* AsyncActivityItemProvider.swift */,
 				8586C5841B52DFA600E1D818 /* AsyncActivityItemProviderInternal.swift */,
 				854086C31B579F8E009355A0 /* AsyncActivityItemProviderOperations.swift */,
+				854086C71B59ED8D009355A0 /* AsyncActivityItemProvider.podspec */,
 			);
 			name = Pod;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 			files = (
 				8586C5631B52DC2900E1D818 /* Main.storyboard in Resources */,
 				8586C5681B52DC2900E1D818 /* LaunchScreen.xib in Resources */,
+				854086C81B59ED8D009355A0 /* AsyncActivityItemProvider.podspec in Resources */,
 				8586C5651B52DC2900E1D818 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
