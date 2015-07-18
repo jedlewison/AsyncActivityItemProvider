@@ -61,7 +61,7 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
     private var selfCancelled = false {
         didSet {
             if selfCancelled {
-                cancel()
+                operationQueue?.cancelAllOperations()
             }
         }
     }
@@ -105,6 +105,7 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
             operationQueue?.addOperations(operations, waitUntilFinished: true)
 
             if selfCancelled {
+                self.cancel()
                 let dismissActivityViewControllerOperation = DismissViewControllerOperation(presentedViewController: avc)
                 operationQueue?.addOperations([dismissActivityViewControllerOperation], waitUntilFinished: true)
                 return nil
@@ -166,7 +167,9 @@ public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, As
     }
 
     public func finishWithItem(item: AnyObject?) {
+        if !cancelled {
         self.item = item
+        }
         finish()
     }
 
