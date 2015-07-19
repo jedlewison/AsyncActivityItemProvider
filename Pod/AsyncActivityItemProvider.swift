@@ -24,6 +24,7 @@ public protocol AsyncActivityItemProviderOperationController: NSObjectProtocol {
     func finish()
     func cancel()
     var progress: Double { get set }
+    var cancelled: Bool { get }
 }
 
 
