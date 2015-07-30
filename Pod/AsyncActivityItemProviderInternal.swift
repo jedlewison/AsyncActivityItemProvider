@@ -90,21 +90,26 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
             operationQueue?.name = "AsyncActivityItemProviderOpQ"
             itemProviderOperation.activityType = activityType
 
-            let operations: [AnyObject]
+            let startBackgroundOperation = StartBackgroundOperation()
+            itemProviderOperation.addDependency(startBackgroundOperation)
+            let endBackgroundOperation = EndBackgroundOperation()
+            endBackgroundOperation.addDependency(itemProviderOperation)
+            let guaranteeAppIsInForegroundOperation = GuaranteeAppIsInForegroundOperation()
+            guaranteeAppIsInForegroundOperation.addDependency(endBackgroundOperation)
+            var operations = [startBackgroundOperation, itemProviderOperation, endBackgroundOperation, guaranteeAppIsInForegroundOperation]
 
             if let progressController = progressController {
                 let presentViewControllerOperation = PresentViewControllerOperation(presentationContext: avc, presentedViewController: progressController)
                 let dismissViewControllerOperation = DismissViewControllerOperation(presentedViewController: progressController)
                 itemProviderOperation.addDependency(presentViewControllerOperation)
                 dismissViewControllerOperation.addDependency(itemProviderOperation)
-                operations = [presentViewControllerOperation, itemProviderOperation, dismissViewControllerOperation]
-            } else {
-                operations = [itemProviderOperation]
+                operations.extend([presentViewControllerOperation, dismissViewControllerOperation])
             }
 
             operationQueue?.addOperations(operations, waitUntilFinished: true)
 
             if selfCancelled {
+                println("Cancelled")
                 self.cancel()
                 let dismissActivityViewControllerOperation = DismissViewControllerOperation(presentedViewController: avc)
                 operationQueue?.addOperations([dismissActivityViewControllerOperation], waitUntilFinished: true)
@@ -167,6 +172,7 @@ public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, As
     }
 
     public func finishWithItem(item: AnyObject?) {
+
         if !cancelled {
         self.item = item
         }

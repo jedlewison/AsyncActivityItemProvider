@@ -18,17 +18,19 @@ class ViewController: UIViewController {
         let provideItemHandler: ProvideItemHandler = {
             (activityType: String, operation: AsyncActivityItemProviderOperationController) in
 
-            let delay = Int64(4 * NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, delay)
+            let delayFactor: Double = 12
+            let delay = UInt64(delayFactor) * NSEC_PER_SEC
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
             dispatch_after(time, dispatch_get_main_queue()) {
                 [weak operation] in
                 operation?.finishWithItem(NSDate().description)
             }
 
             // Update progress during the operation
+
             var i = 1 as Double
-            while i <= 4 {
-                operation.progress = i/4
+            while i <= delayFactor {
+                operation.progress = i/delayFactor
                 i += 1
                 sleep(1)
             }
@@ -53,6 +55,17 @@ class ViewController: UIViewController {
         let activityViewController = UIActivityViewController(asyncItemProvider: asyncActivityItemProvider, activityItems: nil, applicationActivities: nil)
         activityViewController.popoverPresentationController?.barButtonItem = sender
         presentViewController(activityViewController, animated: true, completion: nil)
+
+        activityViewController.completionWithItemsHandler = {
+            _, completed, _, error in
+            if let error = error {
+                println(error)
+            }
+            println(completed)
+
+            activityViewController.completionWithItemsHandler = nil
+        }
+
     }
 
     
