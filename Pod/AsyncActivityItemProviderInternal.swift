@@ -109,7 +109,6 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
             operationQueue?.addOperations(operations, waitUntilFinished: true)
 
             if selfCancelled {
-                println("Cancelled")
                 self.cancel()
                 let dismissActivityViewControllerOperation = DismissViewControllerOperation(presentedViewController: avc)
                 operationQueue?.addOperations([dismissActivityViewControllerOperation], waitUntilFinished: true)
