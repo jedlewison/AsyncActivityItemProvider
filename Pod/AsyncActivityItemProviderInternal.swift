@@ -77,49 +77,47 @@ final class AsyncUIActivityItemProvider: UIActivityItemProvider {
         return alertController
         }()
 
-    override func item() -> AnyObject! {
+    override func item() -> AnyObject {
 
-        if let itemProviderOperation = itemProviderOperation {
-            itemProviderOperation.activityType = activityType
-            itemProviderOperation.progressHandler = {
-                progress in
-                self.progress = progress
-            }
-            self.itemProviderOperation = nil
-            operationQueue = NSOperationQueue()
-            operationQueue?.name = "AsyncActivityItemProviderOpQ"
-            itemProviderOperation.activityType = activityType
+        guard let itemProviderOperation = itemProviderOperation else { return placeholderItem ?? "" }
 
-            let startBackgroundOperation = StartBackgroundOperation()
-            itemProviderOperation.addDependency(startBackgroundOperation)
-            let endBackgroundOperation = EndBackgroundOperation()
-            endBackgroundOperation.addDependency(itemProviderOperation)
-            let guaranteeAppIsInForegroundOperation = GuaranteeAppIsInForegroundOperation()
-            guaranteeAppIsInForegroundOperation.addDependency(endBackgroundOperation)
-            var operations = [startBackgroundOperation, itemProviderOperation, endBackgroundOperation, guaranteeAppIsInForegroundOperation]
-
-            if let progressController = progressController {
-                let presentViewControllerOperation = PresentViewControllerOperation(presentationContext: avc, presentedViewController: progressController)
-                let dismissViewControllerOperation = DismissViewControllerOperation(presentedViewController: progressController)
-                itemProviderOperation.addDependency(presentViewControllerOperation)
-                dismissViewControllerOperation.addDependency(itemProviderOperation)
-                operations.extend([presentViewControllerOperation, dismissViewControllerOperation])
-            }
-
-            operationQueue?.addOperations(operations, waitUntilFinished: true)
-
-            if selfCancelled {
-                self.cancel()
-                let dismissActivityViewControllerOperation = DismissViewControllerOperation(presentedViewController: avc)
-                operationQueue?.addOperations([dismissActivityViewControllerOperation], waitUntilFinished: true)
-                return nil
-            } else {
-                let item: AnyObject? = itemProviderOperation.item
-                return item
-            }
-        } else {
-            return nil
+        itemProviderOperation.activityType = activityType
+        itemProviderOperation.progressHandler = {
+            progress in
+            self.progress = progress
         }
+        self.itemProviderOperation = nil
+        operationQueue = NSOperationQueue()
+        operationQueue?.name = "AsyncActivityItemProviderOpQ"
+        itemProviderOperation.activityType = activityType
+
+        let startBackgroundOperation = StartBackgroundOperation()
+        itemProviderOperation.addDependency(startBackgroundOperation)
+        let endBackgroundOperation = EndBackgroundOperation()
+        endBackgroundOperation.addDependency(itemProviderOperation)
+        let guaranteeAppIsInForegroundOperation = GuaranteeAppIsInForegroundOperation()
+        guaranteeAppIsInForegroundOperation.addDependency(endBackgroundOperation)
+        var operations: [NSOperation] = [startBackgroundOperation, itemProviderOperation, endBackgroundOperation, guaranteeAppIsInForegroundOperation]
+
+        if let progressController = progressController {
+            let presentViewControllerOperation = PresentViewControllerOperation(presentationContext: avc, presentedViewController: progressController)
+            let dismissViewControllerOperation = DismissViewControllerOperation(presentedViewController: progressController)
+            itemProviderOperation.addDependency(presentViewControllerOperation)
+            dismissViewControllerOperation.addDependency(itemProviderOperation)
+            operations.extend([presentViewControllerOperation, dismissViewControllerOperation])
+        }
+
+        operationQueue?.addOperations(operations, waitUntilFinished: true)
+
+        if selfCancelled {
+            self.cancel()
+            let dismissActivityViewControllerOperation = DismissViewControllerOperation(presentedViewController: avc)
+            operationQueue?.addOperations([dismissActivityViewControllerOperation], waitUntilFinished: true)
+            return itemProviderOperation.placeholderItem
+        } else {
+            return itemProviderOperation.item ?? itemProviderOperation.placeholderItem
+        }
+
     }
 
     override func cancel() {
@@ -148,7 +146,7 @@ public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, As
             progressHandler?(progress: progress)
         }
     }
-    
+
     public init(placeholderItem: AnyObject, progressControllerMode: ProgressControllerMode = .Enabled, provideItemHandler: ProvideItemHandler? = nil, cancellationHandler: CancellationHandler? = nil) {
         self.placeholderItem = placeholderItem
         self.progressControllerMode = progressControllerMode
@@ -173,7 +171,7 @@ public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, As
     public func finishWithItem(item: AnyObject?) {
 
         if !cancelled {
-        self.item = item
+            self.item = item
         }
         finish()
     }
@@ -186,5 +184,5 @@ public class ActivityItemProviderOperation: AsyncOperation, ProgressUpdating, As
             finish()
         }
     }
-
+    
 }

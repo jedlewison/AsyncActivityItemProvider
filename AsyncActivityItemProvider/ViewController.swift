@@ -59,9 +59,9 @@ class ViewController: UIViewController {
         activityViewController.completionWithItemsHandler = {
             _, completed, _, error in
             if let error = error {
-                println(error)
+                print(error)
             }
-            println(completed)
+            print(completed)
 
             activityViewController.completionWithItemsHandler = nil
         }

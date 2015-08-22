@@ -1,10 +1,5 @@
 use_frameworks!
 
 target 'AsyncActivityItemProvider' do
-pod 'AsyncOpKit'
+	pod 'AsyncOpKit', :git => 'https://github.com/jedlewison/AsyncOpKit.git', :branch => 'develop'
 end
-
-target 'AsyncActivityItemProviderTests' do
-pod 'AsyncOpKit'
-end
-

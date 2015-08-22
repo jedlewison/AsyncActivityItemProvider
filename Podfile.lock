@@ -2,9 +2,19 @@ PODS:
   - AsyncOpKit (0.0.6)
 
 DEPENDENCIES:
-  - AsyncOpKit
+  - AsyncOpKit (from `https://github.com/jedlewison/AsyncOpKit.git`, branch `develop`)
+
+EXTERNAL SOURCES:
+  AsyncOpKit:
+    :branch: develop
+    :git: https://github.com/jedlewison/AsyncOpKit.git
+
+CHECKOUT OPTIONS:
+  AsyncOpKit:
+    :commit: a9534edda982e77f9595127a44d71edb2a662e31
+    :git: https://github.com/jedlewison/AsyncOpKit.git
 
 SPEC CHECKSUMS:
-  AsyncOpKit: 2cb96804722b01fa4e8c4aae2e9e3e31f8dda4f2
+  AsyncOpKit: 90916e87644121b6cbe5eed251e90fdf3b4a358a
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
